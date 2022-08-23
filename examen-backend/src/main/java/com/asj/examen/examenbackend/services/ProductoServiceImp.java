@@ -13,7 +13,7 @@ import java.util.Optional;
 @Service
 public class ProductoServiceImp implements ProductoService{
 
-    //El Logger sirve para hacer un seguimiento de errores. Usamos el de la librería slf4j
+    //El Logger sirve para hacer un seguimiento de errores. Usamos el de la librería slf4j.
     private Logger logger = LoggerFactory.getLogger(ProductoServiceImp.class);
 
     public ProductoServiceImp() {
