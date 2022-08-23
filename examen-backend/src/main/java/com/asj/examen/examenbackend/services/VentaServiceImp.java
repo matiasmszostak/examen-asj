@@ -2,8 +2,10 @@ package com.asj.examen.examenbackend.services;
 
 import com.asj.examen.examenbackend.models.Vendedor;
 import com.asj.examen.examenbackend.models.Venta;
+import com.asj.examen.examenbackend.repositories.VentaRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
@@ -18,6 +20,17 @@ public class VentaServiceImp implements VentaService{
 
     public VentaServiceImp() {
         logger.info("Se inicializa VentaServiceImp");
+    }
+
+
+
+    @Autowired
+    private VentaRepository ventaRepository;
+
+
+    @Override
+    public Venta altaNuevaVenta(Venta venta) throws Exception {
+        return null;
     }
 
     @Override

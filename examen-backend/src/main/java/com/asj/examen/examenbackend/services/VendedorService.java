@@ -10,6 +10,8 @@ public interface VendedorService {
 
     Optional<Vendedor> buscarVendedorPor(Long id);
 
+    Optional<Vendedor> buscarVendedorPor(String nombre);
+
 
 
 }

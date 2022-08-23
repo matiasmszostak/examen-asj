@@ -11,5 +11,8 @@ public interface ProductoService {
 
     Optional<Producto> buscarProductoPor(Long id);
 
+    Optional<Producto> buscarProductoPor(String nombre);
+
+
 
 }

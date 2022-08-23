@@ -23,9 +23,10 @@ public class Vendedor {
 	private String nombre;
 	private Double sueldo;
 
-	@OneToMany(mappedBy = "vendedor", cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "vendedor", cascade = CascadeType.ALL, orphanRemoval = true)
 	private List<Venta> listaVentas;
 
+	//orphanRemoval => si borro al vendedor, borro sus ventas
 
 
 

@@ -7,5 +7,9 @@ import java.util.Optional;
 
 public interface VentaService {
 
+
+
+    Venta altaNuevaVenta(Venta venta) throws Exception;
+
     Optional<Venta> buscarVentaPor(Long id);
 }

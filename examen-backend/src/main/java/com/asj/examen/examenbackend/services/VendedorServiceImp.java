@@ -2,8 +2,10 @@ package com.asj.examen.examenbackend.services;
 
 
 import com.asj.examen.examenbackend.models.Vendedor;
+import com.asj.examen.examenbackend.repositories.VendedorRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
@@ -18,6 +20,14 @@ public class VendedorServiceImp implements VendedorService{
         logger.info("Se inicializa VendedorServiceImp");
     }
 
+
+
+
+    @Autowired
+    private VendedorRepository vendedorRepository;
+
+
+
     @Override
     public Vendedor altaNuevoVendedor(Vendedor vendedor) throws Exception {
         return null;
@@ -25,6 +35,11 @@ public class VendedorServiceImp implements VendedorService{
 
     @Override
     public Optional<Vendedor> buscarVendedorPor(Long id) {
+        return Optional.empty();
+    }
+
+    @Override
+    public Optional<Vendedor> buscarVendedorPor(String nombre) {
         return Optional.empty();
     }
 }
