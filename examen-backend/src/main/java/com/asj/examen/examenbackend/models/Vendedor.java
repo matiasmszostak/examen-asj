@@ -1,6 +1,7 @@
 package com.asj.examen.examenbackend.models;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -14,6 +15,7 @@ import java.util.List;
 // @Data // getters & setters | mala práctica
 @NoArgsConstructor  // constructor sin args
 @AllArgsConstructor // constructor con args
+@JsonIgnoreProperties
 public class Vendedor {
 
 	//código, nombre, sueldo
@@ -21,8 +23,11 @@ public class Vendedor {
 	@GeneratedValue(generator = "gn_vendedor", strategy = GenerationType.SEQUENCE) // autoincremental
 	private Long id; // codigo
 	private String nombre;
-	private Double sueldo;
+	private Double sueldoBasico;
+	private Double sueldoTotal;
+	private Double comision;
 
+	//Un vendedor puede hacer muchas ventas
 	@OneToMany(mappedBy = "vendedor", cascade = CascadeType.ALL, orphanRemoval = true)
 	private List<Venta> listaVentas;
 
@@ -45,13 +50,6 @@ public class Vendedor {
 		this.nombre = nombre;
 	}
 
-	public Double getSueldo() {
-		return sueldo;
-	}
-
-	public void setSueldo(Double sueldo) {
-		this.sueldo = sueldo;
-	}
 
 	public List<Venta> getListaVentas() {
 		return listaVentas;
@@ -59,5 +57,29 @@ public class Vendedor {
 
 	public void setListaVentas(List<Venta> listaVentas) {
 		this.listaVentas = listaVentas;
+	}
+
+	public Double getSueldoBasico() {
+		return sueldoBasico;
+	}
+
+	public void setSueldoBasico(Double sueldoBasico) {
+		this.sueldoBasico = sueldoBasico;
+	}
+
+	public Double getSueldoTotal() {
+		return sueldoTotal;
+	}
+
+	public void setSueldoTotal(Double sueldoTotal) {
+		this.sueldoTotal = sueldoTotal;
+	}
+
+	public Double getComision() {
+		return comision;
+	}
+
+	public void setComision(Double comision) {
+		this.comision = comision;
 	}
 }

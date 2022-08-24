@@ -1,6 +1,7 @@
 package com.asj.examen.examenbackend.services;
 
 
+import com.asj.examen.examenbackend.exceptions.producto.ProductoNoExisteException;
 import com.asj.examen.examenbackend.models.Producto;
 import com.asj.examen.examenbackend.repositories.ProductoRepository;
 import org.slf4j.Logger;
@@ -26,11 +27,24 @@ public class ProductoServiceImp implements ProductoService{
 
 
     @Override
-    public Optional<Producto> buscarProductoPor(Long id) {
-        Optional<Producto> producto = productoRepositorio.findProductoById(id);
-        return producto;
-    }
+    public Optional<Producto> buscarProductoPor(Long id) throws ProductoNoExisteException {
+        if(!this.productoRepositorio.findProductoById(id).isPresent()){
+            throw new ProductoNoExisteException("El producto con el id " + id + "no existe");
+        }else {
+            return this.productoRepositorio.findProductoById(id);
+        }
 
+    }
+    /*
+ @Override
+    public Optional<Producto> buscarPorId(Long id) throws NoExisteException {
+        if(!this.repo.findById(id).isPresent()){
+            throw new NoExisteException("No existe producto con id ["+id+"]");
+        } else {
+            return this.repo.findById(id);
+        }
+    }
+*/
     @Override
     public Optional<Producto> buscarProductoPor(String nombre) {
         Optional<Producto> producto = productoRepositorio.findProductoByNombre(nombre);
