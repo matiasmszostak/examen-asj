@@ -11,7 +11,7 @@ import java.util.List;
 @Entity // Entidad
 @Table(name= "vendedores") // le cambio el nombre para que matchee con mi DB
 @SequenceGenerator(name = "gn_vendedor", sequenceName = "gn_vendedor", allocationSize = 1) // secuencia para autogenerar el id
-@Data // getters & setters
+// @Data // getters & setters | mala práctica
 @NoArgsConstructor  // constructor sin args
 @AllArgsConstructor // constructor con args
 public class Vendedor {
@@ -29,5 +29,35 @@ public class Vendedor {
 	//orphanRemoval => si borro al vendedor, borro sus ventas
 
 
+	public Long getId() {
+		return id;
+	}
 
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public String getNombre() {
+		return nombre;
+	}
+
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
+	}
+
+	public Double getSueldo() {
+		return sueldo;
+	}
+
+	public void setSueldo(Double sueldo) {
+		this.sueldo = sueldo;
+	}
+
+	public List<Venta> getListaVentas() {
+		return listaVentas;
+	}
+
+	public void setListaVentas(List<Venta> listaVentas) {
+		this.listaVentas = listaVentas;
+	}
 }
