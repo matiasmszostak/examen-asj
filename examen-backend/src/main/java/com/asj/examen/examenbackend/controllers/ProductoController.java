@@ -1,8 +1,8 @@
 package com.asj.examen.examenbackend.controllers;
 
 import com.asj.examen.examenbackend.dto.ProductoDTO;
-import com.asj.examen.examenbackend.exceptions.ProductoNuloException;
-import com.asj.examen.examenbackend.exceptions.ProductoYaExisteExcpetion;
+import com.asj.examen.examenbackend.exceptions.producto.ProductoNuloException;
+import com.asj.examen.examenbackend.exceptions.producto.ProductoYaExisteExcpetion;
 import com.asj.examen.examenbackend.models.Producto;
 import com.asj.examen.examenbackend.repositories.ProductoRepository;
 import com.asj.examen.examenbackend.services.ProductoService;
@@ -14,7 +14,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 @RequestMapping("/productos")

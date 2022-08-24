@@ -1,4 +1,4 @@
-package com.asj.examen.examenbackend.exceptions;
+package com.asj.examen.examenbackend.exceptions.producto;
 
 public class ProductoNoExisteException extends Exception{
     public ProductoNoExisteException() {
