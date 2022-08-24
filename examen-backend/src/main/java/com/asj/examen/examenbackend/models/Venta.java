@@ -19,10 +19,16 @@ public class Venta {
     @GeneratedValue(generator = "gn_venta", strategy = GenerationType.SEQUENCE) // autoincremental
     private Long id; // codigo
     private Double comision;
-
+/*
     @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL) // setteo la forma en la que trae los datos de la entidad || Cascade ALL trae todos los datos relacionados a la entidad y actualiza
     @JoinTable(name = "venta_producto", joinColumns = @JoinColumn(name = "venta_id"), inverseJoinColumns = @JoinColumn(name = "producto_id")) // tabla de relación
     private List<Producto> productos;
+*/
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "venta_producto") // tabla de relación
+    private Producto producto;
+
 
     @ManyToOne(fetch = FetchType.LAZY)
 //   @JoinColumn(name = "ventas_vendedor") // Armo una columna
@@ -45,12 +51,12 @@ public class Venta {
         this.comision = comision;
     }
 
-    public List<Producto> getProductos() {
-        return productos;
+    public Producto getProducto() {
+        return producto;
     }
 
-    public void setProductos(List<Producto> productos) {
-        this.productos = productos;
+    public void setProducto(Producto producto) {
+        this.producto = producto;
     }
 
     public Vendedor getVendedor() {

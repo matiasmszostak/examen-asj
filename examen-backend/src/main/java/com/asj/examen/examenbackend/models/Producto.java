@@ -26,10 +26,11 @@ public class Producto {
     private Double precio;
     private String categoria;
 
+    /*
     //mappedBY => el dueño de la relación es Venta, mappedBy al atributo de productos
     @ManyToMany(mappedBy = "productos", fetch = FetchType.LAZY) // relación de entidades many to many, armo lista de ventas || con fetch LAZY setteo que traiga los datos de la entidad bajo demanda
     private List<Venta> ventas;
-
+*/
 
     public Long getId() {
         return id;
@@ -63,11 +64,4 @@ public class Producto {
         this.categoria = categoria;
     }
 
-    public List<Venta> getVentas() {
-        return ventas;
-    }
-
-    public void setVentas(List<Venta> ventas) {
-        this.ventas = ventas;
-    }
 }
