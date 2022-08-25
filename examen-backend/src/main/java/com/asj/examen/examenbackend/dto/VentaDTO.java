@@ -1,5 +1,8 @@
 package com.asj.examen.examenbackend.dto;
 
+
+import com.asj.examen.examenbackend.models.Producto;
+import com.asj.examen.examenbackend.models.Vendedor;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -11,13 +14,14 @@ import lombok.NoArgsConstructor;
 @Data //Getters y Setters
 @NoArgsConstructor //Constructor vacío
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class ProductoDTO {
-
+public class VentaDTO {
 
     private Long id; // codigo
-    private String nombre;
-    private Double precio;
-    private String categoria;
 
+    private Producto producto;
+
+    private Double total;
+
+    private Vendedor vendedor;
 
 }

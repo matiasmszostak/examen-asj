@@ -68,6 +68,16 @@ public class ProductoController {
         return productoRepository.findAll();
     }
 
+
+    @GetMapping("/categoria/{categoria}")
+    public List<Producto> listarProductosPorCategoria(@PathVariable String categoria) {
+        return (List<Producto>) this.productoService.buscarProductoPor(categoria);
+    }
+
+
+
+
+
     @GetMapping(path = "/{idProducto}")
     public ResponseEntity<Producto> buscarProductoPorId(@PathVariable Long idProducto) throws ProductoNoExisteException {
         return ResponseEntity.ok(this.productoService
@@ -76,15 +86,16 @@ public class ProductoController {
     }
 
 /*
-Me tiraba un error desconocido que no pude arreglar
+Me tiraba un objeto con atributos nulos
 
     @GetMapping(path = "/{idProducto}")
     public ResponseEntity<?> buscarProductoPorID(@PathVariable Long idProducto) {
         try {
-            Optional<Producto> producto = this.productoService.buscarProductoPor(idProducto);
+//            Optional<Producto> producto = this.productoService.buscarProductoPor(idProducto);
             ObjectMapper om = new ObjectMapper();
-            ProductoDTO productoDTO = om.convertValue(producto, ProductoDTO.class);
-            return ResponseEntity.ok(productoDTO);
+            Optional<Producto> productoEnDB = this.productoService.buscarProductoPor(idProducto);
+            ProductoDTO resultado = om.convertValue(productoEnDB, ProductoDTO.class);
+            return ResponseEntity.ok(resultado);
         } catch (ProductoNoExisteException e) {
             logger.error("Error: Producto ya existe");
             return ResponseEntity.notFound().build();
@@ -94,6 +105,19 @@ Me tiraba un error desconocido que no pude arreglar
 
 
 
+
+
+
+
+/*
+*             ObjectMapper om = new ObjectMapper();
+
+            Producto producto = om.convertValue(productoDTO, Producto.class);
+
+            Producto productoEnDB = this.productoService.altaNuevoProducto(producto);
+
+            ProductoDTO resultado = om.convertValue(productoEnDB, ProductoDTO.class);
+            return ResponseEntity.ok(resultado);*/
 
 
 

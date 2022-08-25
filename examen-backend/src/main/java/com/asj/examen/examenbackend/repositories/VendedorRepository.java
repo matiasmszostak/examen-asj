@@ -14,3 +14,5 @@ public interface VendedorRepository  extends JpaRepository<Vendedor, Long> {
     Optional<Vendedor> findVendedorByNombre(String nombre);
 
 }
+
+

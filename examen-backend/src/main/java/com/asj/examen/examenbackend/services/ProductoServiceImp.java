@@ -46,10 +46,9 @@ public class ProductoServiceImp implements ProductoService{
     }
 */
     @Override
-    public Optional<Producto> buscarProductoPor(String nombre) {
-        Optional<Producto> producto = productoRepositorio.findProductoByNombre(nombre);
-        return producto;
-    }
+    public Iterable<Producto> buscarProductoPor(String categoria) {
+        return this.productoRepositorio.findAllByCategoria(categoria);
+    };
 
 
 

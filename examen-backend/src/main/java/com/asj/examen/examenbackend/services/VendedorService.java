@@ -1,5 +1,7 @@
 package com.asj.examen.examenbackend.services;
 
+import com.asj.examen.examenbackend.exceptions.vendedor.VendedorNoExisteException;
+import com.asj.examen.examenbackend.exceptions.vendedor.VendedorYaExisteException;
 import com.asj.examen.examenbackend.models.Vendedor;
 import com.asj.examen.examenbackend.models.Venta;
 
@@ -10,11 +12,9 @@ public interface VendedorService {
 
     Vendedor altaNuevoVendedor(Vendedor vendedor) throws Exception;
 
-    Optional<Vendedor> buscarVendedorPor(Long id);
+    Optional<Vendedor> buscarVendedorPor(Long id) throws VendedorNoExisteException;
 
-    Optional<Vendedor> buscarVendedorPor(String nombre);
-
-    Optional<Vendedor> aumentarComisionPorVentas(List<Venta> listaVentas); //Probar
+    Optional<Vendedor> buscarVendedorPor(String nombre) throws VendedorNoExisteException;
 
 
 

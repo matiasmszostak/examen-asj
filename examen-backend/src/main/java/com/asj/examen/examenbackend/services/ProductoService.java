@@ -12,7 +12,9 @@ public interface ProductoService {
 
     Optional<Producto> buscarProductoPor(Long id) throws ProductoNoExisteException;
 
-    Optional<Producto> buscarProductoPor(String nombre);
+    Iterable<Producto> buscarProductoPor(String categoria);
+
+
 
 
 
