@@ -11,6 +11,9 @@ import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.annotation.PropertyAccessor;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiResponse;
+import io.swagger.annotations.ApiResponses;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,6 +44,12 @@ public class ProductoController {
 
 
     @PostMapping()
+    @ApiOperation("Ingresar producto")
+    @ApiResponses({
+            @ApiResponse(code = 200, message = "OK"),
+            @ApiResponse(code = 400, message = "Datos ingresados con algún error"),
+            @ApiResponse(code = 500, message = "Error interno de sistema")
+    })
     public ResponseEntity<?> altaNuevoProducto(@RequestBody ProductoDTO productoDTO) {
         try{
             ObjectMapper om = new ObjectMapper();
@@ -68,13 +77,19 @@ public class ProductoController {
         }
     }
 
+
     @GetMapping()
+    @ApiOperation("Mostrar todos los productos")
+    @ApiResponse(code = 200, message = "OK")
     public List<Producto> listarTodosLosProductos(){
         return productoRepository.findAll();
     }
 
 
+
     @GetMapping("/categoria/{categoria}")
+    @ApiOperation("Mostrar todos los productos por categoría")
+    @ApiResponse(code = 200, message = "OK")
     public List<Producto> listarProductosPorCategoria(@PathVariable String categoria) {
         return (List<Producto>) this.productoService.buscarProductoPor(categoria);
     }
@@ -84,6 +99,8 @@ public class ProductoController {
 
 
     @GetMapping(path = "/{idProducto}")
+    @ApiOperation("Mostrar producto por ID")
+    @ApiResponse(code = 200, message = "OK")
     public ResponseEntity<Producto> buscarProductoPorId(@PathVariable Long idProducto) throws ProductoNoExisteException {
         return ResponseEntity.ok(this.productoService
                 .buscarProductoPor(idProducto)

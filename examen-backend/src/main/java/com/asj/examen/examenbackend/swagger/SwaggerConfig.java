@@ -16,7 +16,7 @@ public class SwaggerConfig {
     public Docket api(){
         return new Docket(DocumentationType.SWAGGER_2)
                 .select()
-                .apis(RequestHandlerSelectors.basePackage("com.asj.examen.examenbackend"))
+                .apis(RequestHandlerSelectors.basePackage("com.asj.examen.examenbackend.controllers"))
                 .paths(PathSelectors.any())
                 .build();
     }
