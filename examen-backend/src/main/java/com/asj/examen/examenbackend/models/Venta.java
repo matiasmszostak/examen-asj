@@ -19,7 +19,8 @@ public class Venta {
 
     @Id
     @GeneratedValue(generator = "gn_venta", strategy = GenerationType.SEQUENCE) // autoincremental
-    private Long id; // codigo
+    @Column(name = "codigo", unique = true)
+    private Long id;
 
 /*
     @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL) // setteo la forma en la que trae los datos de la entidad || Cascade ALL trae todos los datos relacionados a la entidad y actualiza

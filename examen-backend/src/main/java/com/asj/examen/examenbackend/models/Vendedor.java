@@ -21,7 +21,8 @@ public class Vendedor {
 	//código, nombre, sueldo
 	@Id
 	@GeneratedValue(generator = "gn_vendedor", strategy = GenerationType.SEQUENCE) // autoincremental
-	private Long id; // codigo
+	@Column(name = "codigo", unique = true)
+	private Long id;
 	private String nombre;
 	private Double sueldoBasico;
 	private Double sueldoTotal;

@@ -21,7 +21,8 @@ public class Producto {
 
     @Id
     @GeneratedValue(generator = "gn_producto", strategy = GenerationType.SEQUENCE) // autoincremental
-    private Long id; // codigo
+    @Column(name = "codigo", unique = true)
+    private Long id;
     private String nombre;
     private Double precio;
     private String categoria;
