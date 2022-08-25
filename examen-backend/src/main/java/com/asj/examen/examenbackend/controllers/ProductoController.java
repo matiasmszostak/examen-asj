@@ -7,8 +7,11 @@ import com.asj.examen.examenbackend.exceptions.producto.ProductoYaExisteExcpetio
 import com.asj.examen.examenbackend.models.Producto;
 import com.asj.examen.examenbackend.repositories.ProductoRepository;
 import com.asj.examen.examenbackend.services.ProductoService;
+import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.PropertyAccessor;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.SerializationFeature;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -43,6 +46,10 @@ public class ProductoController {
     public ResponseEntity<?> altaNuevoProducto(@RequestBody ProductoDTO productoDTO) {
         try{
             ObjectMapper om = new ObjectMapper();
+
+            om.setVisibility(PropertyAccessor.FIELD, JsonAutoDetect.Visibility.ANY);
+
+            om.configure(SerializationFeature.FAIL_ON_EMPTY_BEANS, false);
 
             Producto producto = om.convertValue(productoDTO, Producto.class);
 

@@ -27,10 +27,11 @@ public class Vendedor {
 	private Double sueldoTotal;
 	private Double comision;
 
+	/*
 	//Un vendedor puede hacer muchas ventas
 	@OneToMany(mappedBy = "vendedor", cascade = CascadeType.ALL, orphanRemoval = true)
 	private List<Venta> listaVentas;
-
+*/
 	//orphanRemoval => si borro al vendedor, borro sus ventas
 
 
@@ -50,14 +51,14 @@ public class Vendedor {
 		this.nombre = nombre;
 	}
 
-
-	public List<Venta> getListaVentas() {
-		return listaVentas;
-	}
-
-	public void setListaVentas(List<Venta> listaVentas) {
-		this.listaVentas = listaVentas;
-	}
+//
+//	public List<Venta> getListaVentas() {
+//		return listaVentas;
+//	}
+//
+//	public void setListaVentas(List<Venta> listaVentas) {
+//		this.listaVentas = listaVentas;
+//	}
 
 	public Double getSueldoBasico() {
 		return sueldoBasico;

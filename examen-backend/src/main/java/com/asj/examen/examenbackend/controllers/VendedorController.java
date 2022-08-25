@@ -9,7 +9,10 @@ import com.asj.examen.examenbackend.models.Producto;
 import com.asj.examen.examenbackend.models.Vendedor;
 import com.asj.examen.examenbackend.repositories.VendedorRepository;
 import com.asj.examen.examenbackend.services.VendedorService;
+import com.fasterxml.jackson.annotation.JsonAutoDetect;
+import com.fasterxml.jackson.annotation.PropertyAccessor;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.SerializationFeature;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -43,6 +46,10 @@ public class VendedorController {
     public ResponseEntity<?> altaNuevoVendedor(@RequestBody VendedorDTO vendedorDTO) {
         try{
             ObjectMapper om = new ObjectMapper();
+
+            om.setVisibility(PropertyAccessor.FIELD, JsonAutoDetect.Visibility.ANY);
+
+            om.configure(SerializationFeature.FAIL_ON_EMPTY_BEANS, false);
 
             Vendedor vendedor = om.convertValue(vendedorDTO, Vendedor.class);
 

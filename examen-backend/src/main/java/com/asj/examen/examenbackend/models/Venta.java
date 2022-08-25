@@ -27,19 +27,31 @@ public class Venta {
     private List<Producto> productos;
 */ // le saco el many to many porque me estaba generando errores en el DER
 
+
+/*
     //Se pueden hacer muchas ventas del mismo producto
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_producto") //FK // tabla de relación
     private Producto producto;
 
-    private Double total;
+
 
     // Muchas ventas puede hacer un vendedor
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name="id_vendedor") //FK
 //   @JoinColumn(name = "ventas_vendedor") // Armo una columna
     private Vendedor vendedor;
+    */
 
+    @ManyToOne
+    @JoinColumn(name="id_vendedor")
+    private Vendedor vendedor;
+
+    @ManyToOne
+    @JoinColumn(name="id_producto")
+    private Producto producto;
+
+    private Double total;
 
     public Long getId() {
         return id;

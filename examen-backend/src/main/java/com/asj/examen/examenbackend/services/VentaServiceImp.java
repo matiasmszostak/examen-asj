@@ -52,6 +52,11 @@ public class VentaServiceImp implements VentaService{
     }
 
     @Override
+    public Iterable<Venta> listarTodasLasVentas() {
+        return this.ventaRepository.findAll();
+    }
+
+    @Override
     public Venta altaNuevaVenta(Venta venta) throws Exception {
         if (venta != null) {
             if (venta.getId() != null) {
@@ -119,11 +124,12 @@ public class VentaServiceImp implements VentaService{
     }
 
 
-}
 
 
-/*
-*     @Override
+
+
+/*     @Override
     public Iterable<Venta> listarVentas() {
         return this.repo.findAll();
     }*/
+}

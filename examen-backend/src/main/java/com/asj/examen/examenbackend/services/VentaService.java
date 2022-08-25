@@ -14,10 +14,14 @@ public interface VentaService {
     Venta altaNuevaVenta(Venta venta) throws Exception;
 
     Optional<Venta> buscarVentaPor(Long id) throws VentaNoExisteException;
-}
+
+    Iterable<Venta> listarTodasLasVentas();
+
+
 
 
 /*
     Iterable<Venta> listarVentas();
 
 * */
+}

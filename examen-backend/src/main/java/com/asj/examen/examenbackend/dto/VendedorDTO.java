@@ -11,7 +11,7 @@ import lombok.NoArgsConstructor;
 import java.util.List;
 
 @AllArgsConstructor //Constructor con todos los argunmentos
-@Data //Getters y Setters
+// @Data //Getters y Setters
 @NoArgsConstructor //Constructor vacío
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class VendedorDTO {
@@ -23,8 +23,47 @@ public class VendedorDTO {
     private Double comision;
 
 
-    private List<Venta> listaVentas;
 
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public Double getSueldoBasico() {
+        return sueldoBasico;
+    }
+
+    public void setSueldoBasico(Double sueldoBasico) {
+        this.sueldoBasico = sueldoBasico;
+    }
+
+    public Double getSueldoTotal() {
+        return sueldoTotal;
+    }
+
+    public void setSueldoTotal(Double sueldoTotal) {
+        this.sueldoTotal = sueldoTotal;
+    }
+
+    public Double getComision() {
+        return comision;
+    }
+
+    public void setComision(Double comision) {
+        this.comision = comision;
+    }
 
 
 }
