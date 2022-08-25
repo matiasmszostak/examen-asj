@@ -1,16 +1,9 @@
 package com.asj.examen.examenbackend.controllers;
 
 
-import com.asj.examen.examenbackend.dto.VendedorDTO;
 import com.asj.examen.examenbackend.dto.VentaDTO;
-import com.asj.examen.examenbackend.exceptions.producto.ProductoNoExisteException;
-import com.asj.examen.examenbackend.exceptions.vendedor.VendedorNuloException;
-import com.asj.examen.examenbackend.exceptions.vendedor.VendedorYaExisteException;
-import com.asj.examen.examenbackend.exceptions.venta.VentaNoExisteException;
 import com.asj.examen.examenbackend.exceptions.venta.VentaNulaException;
 import com.asj.examen.examenbackend.exceptions.venta.VentaYaExisteException;
-import com.asj.examen.examenbackend.models.Producto;
-import com.asj.examen.examenbackend.models.Vendedor;
 import com.asj.examen.examenbackend.models.Venta;
 import com.asj.examen.examenbackend.repositories.VentaRepository;
 import com.asj.examen.examenbackend.services.VentaService;
@@ -77,23 +70,5 @@ public class VentaController {
     public List<Venta> listarTodasLasVentas(){
         return ventaRepository.findAll();
     }
-    /*
-    @GetMapping()
-    public List<Venta> listarTodasLasVentas(){
-        return (List<Venta>) this.ventaService.listarTodasLasVentas();
-    }
 
-*/
-
-    /*
-    @GetMapping(path = "/{idVenta}")
-    public ResponseEntity<?> buscarProductoPorId(@PathVariable Long idVenta) throws VentaNoExisteException {
-        return ResponseEntity.ok(this.ventaService
-                .buscarVentaPor(idVenta)
-                .orElse(null));
-    }
-
-
-
-*/
 }

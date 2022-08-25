@@ -3,12 +3,11 @@ package com.asj.examen.examenbackend.controllers;
 import com.asj.examen.examenbackend.dto.ProductoDTO;
 import com.asj.examen.examenbackend.exceptions.producto.ProductoNoExisteException;
 import com.asj.examen.examenbackend.exceptions.producto.ProductoNuloException;
-import com.asj.examen.examenbackend.exceptions.producto.ProductoYaExisteExcpetion;
+import com.asj.examen.examenbackend.exceptions.producto.ProductoYaExisteException;
 import com.asj.examen.examenbackend.models.Producto;
 import com.asj.examen.examenbackend.repositories.ProductoRepository;
 import com.asj.examen.examenbackend.services.ProductoService;
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.PropertyAccessor;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
@@ -19,7 +18,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 @RequestMapping("/productos")
@@ -58,7 +56,7 @@ public class ProductoController {
             ProductoDTO resultado = om.convertValue(productoEnDB, ProductoDTO.class);
             return ResponseEntity.ok(resultado);
 
-        } catch (ProductoYaExisteExcpetion e){
+        } catch (ProductoYaExisteException e){
             logger.error("Error: Producto ya existe", e);
             return ResponseEntity.badRequest().body("Ya existe el producto. Detalle " + e.getMessage());
         }catch (ProductoNuloException productoNuloException){
@@ -91,40 +89,6 @@ public class ProductoController {
                 .buscarProductoPor(idProducto)
                 .orElse(null));
     }
-
-/*
-Me tiraba un objeto con atributos nulos
-
-    @GetMapping(path = "/{idProducto}")
-    public ResponseEntity<?> buscarProductoPorID(@PathVariable Long idProducto) {
-        try {
-//            Optional<Producto> producto = this.productoService.buscarProductoPor(idProducto);
-            ObjectMapper om = new ObjectMapper();
-            Optional<Producto> productoEnDB = this.productoService.buscarProductoPor(idProducto);
-            ProductoDTO resultado = om.convertValue(productoEnDB, ProductoDTO.class);
-            return ResponseEntity.ok(resultado);
-        } catch (ProductoNoExisteException e) {
-            logger.error("Error: Producto ya existe");
-            return ResponseEntity.notFound().build();
-        }
-    }
-*/
-
-
-
-
-
-
-
-/*
-*             ObjectMapper om = new ObjectMapper();
-
-            Producto producto = om.convertValue(productoDTO, Producto.class);
-
-            Producto productoEnDB = this.productoService.altaNuevoProducto(producto);
-
-            ProductoDTO resultado = om.convertValue(productoEnDB, ProductoDTO.class);
-            return ResponseEntity.ok(resultado);*/
 
 
 

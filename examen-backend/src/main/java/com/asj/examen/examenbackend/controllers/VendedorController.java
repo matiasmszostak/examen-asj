@@ -2,10 +2,8 @@ package com.asj.examen.examenbackend.controllers;
 
 
 import com.asj.examen.examenbackend.dto.VendedorDTO;
-import com.asj.examen.examenbackend.exceptions.producto.ProductoNoExisteException;
 import com.asj.examen.examenbackend.exceptions.vendedor.VendedorNoExisteException;
 import com.asj.examen.examenbackend.exceptions.vendedor.VendedorNuloException;
-import com.asj.examen.examenbackend.models.Producto;
 import com.asj.examen.examenbackend.models.Vendedor;
 import com.asj.examen.examenbackend.repositories.VendedorRepository;
 import com.asj.examen.examenbackend.services.VendedorService;

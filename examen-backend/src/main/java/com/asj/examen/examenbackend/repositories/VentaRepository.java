@@ -15,7 +15,7 @@ public interface VentaRepository extends JpaRepository<Venta, Long> {
 
     @Query("select v from Venta v join fetch v.vendedor u where u.id = ?1")
     Iterable<Venta> findVentaByIdVendedor(Long id);
-    // v es por Venta, u es por vendedor
+    // v es por Venta, u es por Vendedor
 
 
 }

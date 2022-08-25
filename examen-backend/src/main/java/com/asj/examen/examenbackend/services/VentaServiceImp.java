@@ -65,44 +65,45 @@ public class VentaServiceImp implements VentaService{
                 }
             }
         }
-//        //Seteo la fecha
-//        venta.setFecha(new Date());
 
-        //Seteo el total
+        //Set total
         Optional<Producto> productoBuscado = this.productoService
                 .buscarProductoPor(venta.getProducto().getId());
 
-        if(!productoBuscado.isPresent()){
+        if(productoBuscado == null){
             throw new ProductoNoExisteException("No se halló el producto");
         }
 
-        //
+        //Busco producto
         Producto producto = productoBuscado.get();
         venta.setTotal(producto.getPrecio());
 
 
-        //Valido vendedor
+        //Busco vendedor
         Optional<Vendedor> vendedorBuscado = this.vendedorService
                 .buscarVendedorPor(venta.getVendedor().getId());
 
-        if(!vendedorBuscado.isPresent()){
+        if(vendedorBuscado == null){
             throw new VendedorNoExisteException("No se halló al vendedor");
         }
 
-        //Persisto venta
+        //Guardo venta
         Venta resultado = this.ventaRepository.save(venta);
 
-//        Actualizo comisiones y sueldo del vendedor
+
+        //Actualizo comisiones del vendedor
         Double comisionVentaActualizada = this.comisionPorcentaje(venta);
 
         Vendedor vendedor = vendedorBuscado.get();
         vendedor.setComision(comisionVentaActualizada);
+
+        //actualizo el sueldo total
         vendedor.setSueldoTotal(vendedor.getSueldoBasico()+vendedor.getComision());
 
-        //Persisto cambios en vendedor
+        //Guardo los cambios en el vendedor
         this.vendedorService.actualizarVendedor(vendedor.getId(), vendedor);
 
-        //Devuelvo venta
+        //Devuelvo la venta
         return resultado;
     }
 

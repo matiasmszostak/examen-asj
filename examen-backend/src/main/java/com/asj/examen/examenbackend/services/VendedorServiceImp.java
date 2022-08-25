@@ -37,11 +37,11 @@ public class VendedorServiceImp implements VendedorService{
     public Vendedor altaNuevoVendedor(Vendedor vendedor) throws Exception {
 
         if (vendedor != null) {
-      //      if (vendedor.getId() != null) {
+            if (vendedor.getId() != null) {
                 if (this.vendedorRepository.findById(vendedor.getId()).isPresent()) {
                     throw new VendedorYaExisteException("Ya existe el vendedor buscado");
                 }
-    //        }
+            }
             vendedor.setComision(0.0);
             vendedor.setSueldoTotal(vendedor.getSueldoBasico() + vendedor.getComision());
             return this.vendedorRepository.save(vendedor);
@@ -91,25 +91,3 @@ public class VendedorServiceImp implements VendedorService{
 
 
 }
-
-
-/*
-
-    @Override
-    public Vendedor actualizarVendedor(Long id, Vendedor vendedorActualizado) throws VendedorNoExisteException {
-        Optional<Vendedor> vendedorBuscado = this.vendedorRepository
-                .findById(id);
-
-        if (vendedorBuscado == null) {
-            throw new VendedorNoExisteException("No existe vendedor con id " + id);
-
-        } else {
-            Vendedor vendedor = vendedorBuscado.get();
-
-            vendedor.setComision(vendedorActualizado.getComision());
-            vendedor.setSueldoTotal(vendedorActualizado.getSueldoTotal());
-
-            return this.vendedorRepository.save(vendedor);
-        }
-    }
-*/
