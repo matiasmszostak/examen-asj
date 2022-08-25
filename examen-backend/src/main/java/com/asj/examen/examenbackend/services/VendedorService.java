@@ -16,6 +16,8 @@ public interface VendedorService {
 
     Optional<Vendedor> buscarVendedorPor(String nombre) throws VendedorNoExisteException;
 
+    Vendedor actualizarVendedor(Long id, Vendedor vendedor) throws VendedorNoExisteException;
+
 
 
 }

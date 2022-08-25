@@ -1,6 +1,7 @@
 package com.asj.examen.examenbackend.services;
 
 
+import com.asj.examen.examenbackend.exceptions.producto.ProductoNoExisteException;
 import com.asj.examen.examenbackend.exceptions.vendedor.VendedorNoExisteException;
 import com.asj.examen.examenbackend.exceptions.vendedor.VendedorYaExisteException;
 import com.asj.examen.examenbackend.models.Vendedor;
@@ -38,7 +39,7 @@ public class VendedorServiceImp implements VendedorService{
         if (vendedor != null) {
       //      if (vendedor.getId() != null) {
                 if (this.vendedorRepository.findById(vendedor.getId()).isPresent()) {
-                    throw new VendedorYaExisteException("Ya existe vendedor con id " + vendedor.getId());
+                    throw new VendedorYaExisteException("Ya existe el vendedor buscado");
                 }
     //        }
             vendedor.setComision(0.0);
@@ -51,8 +52,12 @@ public class VendedorServiceImp implements VendedorService{
     }
 
     @Override
-    public Optional<Vendedor> buscarVendedorPor(Long id) throws VendedorNoExisteException{
-        return Optional.empty();
+    public Optional<Vendedor> buscarVendedorPor(Long id) throws VendedorNoExisteException {
+        if (!this.vendedorRepository.findVendedorById(id).isPresent()) {
+            throw new VendedorNoExisteException("El vendedor buscado no existe");
+        } else {
+            return this.vendedorRepository.findVendedorById(id);
+        }
     }
 
     @Override
@@ -61,5 +66,50 @@ public class VendedorServiceImp implements VendedorService{
     }
 
 
+
+
+
+    @Override
+    public Vendedor actualizarVendedor(Long id, Vendedor vendedorActualizado) throws VendedorNoExisteException {
+        Optional<Vendedor> vendedorBuscado = this.vendedorRepository
+                .findById(id);
+
+        if (vendedorBuscado.isPresent()) {
+            Vendedor vendedor = vendedorBuscado.get();
+
+            vendedor.setComision(vendedorActualizado.getComision());
+            vendedor.setSueldoTotal(vendedorActualizado.getSueldoTotal());
+
+            return this.vendedorRepository.save(vendedor);
+        } else {
+            throw new VendedorNoExisteException("El vendedor buscado no existe");
+        }
+    }
+
+
+
+
+
 }
 
+
+/*
+
+    @Override
+    public Vendedor actualizarVendedor(Long id, Vendedor vendedorActualizado) throws VendedorNoExisteException {
+        Optional<Vendedor> vendedorBuscado = this.vendedorRepository
+                .findById(id);
+
+        if (vendedorBuscado == null) {
+            throw new VendedorNoExisteException("No existe vendedor con id " + id);
+
+        } else {
+            Vendedor vendedor = vendedorBuscado.get();
+
+            vendedor.setComision(vendedorActualizado.getComision());
+            vendedor.setSueldoTotal(vendedorActualizado.getSueldoTotal());
+
+            return this.vendedorRepository.save(vendedor);
+        }
+    }
+*/

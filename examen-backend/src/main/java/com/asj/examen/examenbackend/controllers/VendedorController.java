@@ -2,7 +2,10 @@ package com.asj.examen.examenbackend.controllers;
 
 
 import com.asj.examen.examenbackend.dto.VendedorDTO;
+import com.asj.examen.examenbackend.exceptions.producto.ProductoNoExisteException;
+import com.asj.examen.examenbackend.exceptions.vendedor.VendedorNoExisteException;
 import com.asj.examen.examenbackend.exceptions.vendedor.VendedorNuloException;
+import com.asj.examen.examenbackend.models.Producto;
 import com.asj.examen.examenbackend.models.Vendedor;
 import com.asj.examen.examenbackend.repositories.VendedorRepository;
 import com.asj.examen.examenbackend.services.VendedorService;
@@ -65,6 +68,17 @@ public class VendedorController {
     public List<Vendedor> listarTodosLosVendedores(){
         return vendedorRepository.findAll();
     }
+
+
+
+    @GetMapping(path = "/{idVendedor}")
+    public ResponseEntity<Vendedor> buscarVendedorPorId(@PathVariable Long idVendedor) throws VendedorNoExisteException {
+        return ResponseEntity.ok(this.vendedorService
+                .buscarVendedorPor(idVendedor)
+                .orElse(null));
+    }
+
+
 
 
 
