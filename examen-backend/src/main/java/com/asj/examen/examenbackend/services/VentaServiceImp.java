@@ -125,12 +125,4 @@ public class VentaServiceImp implements VentaService{
     }
 
 
-
-
-
-
-/*     @Override
-    public Iterable<Venta> listarVentas() {
-        return this.repo.findAll();
-    }*/
 }

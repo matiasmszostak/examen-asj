@@ -2,8 +2,11 @@ package com.asj.examen.examenbackend.controllers;
 
 
 import com.asj.examen.examenbackend.dto.VentaDTO;
+import com.asj.examen.examenbackend.exceptions.vendedor.VendedorNoExisteException;
+import com.asj.examen.examenbackend.exceptions.venta.VentaNoExisteException;
 import com.asj.examen.examenbackend.exceptions.venta.VentaNulaException;
 import com.asj.examen.examenbackend.exceptions.venta.VentaYaExisteException;
+import com.asj.examen.examenbackend.models.Vendedor;
 import com.asj.examen.examenbackend.models.Venta;
 import com.asj.examen.examenbackend.repositories.VentaRepository;
 import com.asj.examen.examenbackend.services.VentaService;
@@ -81,5 +84,17 @@ public class VentaController {
     public List<Venta> listarTodasLasVentas(){
         return ventaRepository.findAll();
     }
+
+
+    @GetMapping(path = "/{idVenta}")
+    @ApiOperation("Mostrar venta por ID")
+    @ApiResponse(code = 200, message = "OK")
+    public ResponseEntity<Venta> buscarVentaPorId(@PathVariable Long idVenta) throws VentaNoExisteException {
+        return ResponseEntity.ok(this.ventaService
+                .buscarVentaPor(idVenta)
+                .orElse(null));
+    }
+
+
 
 }
